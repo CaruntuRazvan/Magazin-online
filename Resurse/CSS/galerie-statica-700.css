@@ -1,0 +1,9 @@
+@media screen and (max-width:767px){
+    #grid-galerie {
+        display:block;
+    }
+}
+
+#grid-galerie img{
+    width: 80%;
+  }

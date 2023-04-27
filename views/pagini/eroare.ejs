@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html  lang="ro">   
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Lumea portarilor ofera o gama larga de manusi profesionale si accesorii destinate portarilor .">
+        <meta name="keywords" content="manusi de portar, manusi de portar profesionale, fotbal ">
+        <title>Lumea portarilor</title>
+        <%- include("../fragmente/head.ejs") %>     
+    </head>
+    <body class="error-page">
+    <%- include("../fragmente/header.ejs") %> 
+    <hr class="page-break">
+    <main>
+        <div id="err-coloane">
+			<div id="err-imag">
+				<img src="<%- locals.imagine %>" />
+			</div>
+			<section>
+				<h2><%- locals.titlu %></h2>
+				<p><%- locals.text %></p>
+			</section>
+		</div>   
+    </main>
+
+    <hr class="page-break">
+    <%- include("../fragmente/footer.ejs") %> 
+    </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "sass": "^1.62.0",
+    "sharp": "^0.32.0"
+  },
+  "name": "proiect-tehnici-web",
+  "version": "1.0.0",
+  "description": "Lumea portarilor ofera o gama larga de manusi profesionale si accesorii destinate portarilor .",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Lumea",
+    "portarilor",
+    "manusi",
+    "de",
+    "portar",
+    "manusi",
+    "de",
+    "portar",
+    "profesionale",
+    "fotbal"
+  ],
+  "author": "Razvan Caruntu",
+  "license": "ISC"
+}

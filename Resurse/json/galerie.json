@@ -1,0 +1,66 @@
+{
+	"cale_galerie":"Resurse/Imagini/galerie",
+	"imagini": [
+		{
+			"fisier":"ter_stegen.png",
+			"descriere":"Ter Stegen",
+			"timp":["0", "1", "2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+		},
+		{
+			"fisier":"oblak.png",
+			"descriere":"Yann Sommer",
+			"timp":["0", "1", "2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+			
+		},
+		{
+			"fisier":"courtois.png",
+			"descriere":"Thibaut Courtois",
+			"timp":["0", "1", "2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+		},
+		{
+			"fisier":"adidas1.png",
+			"descriere":"Adidas",
+			"timp":["5","6","7","8","9","10","11"]
+		},
+		{
+			"fisier":"puma1.png",
+			"descriere":"Puma",
+			"timp":["5","6","7","8","9","10","11"]
+		},
+		{
+			"fisier":"nike1.png",
+			"descriere":"Nike",
+			"timp":["5","6","7","8","9","10","11"]
+		},
+		{
+			"fisier":"adidas2.png",
+			"descriere":"Adidas",
+			"timp":["12", "13", "14","15","16","17","18","19","20"]
+		},
+		{
+			"fisier":"puma2.png",
+			"descriere":"Puma",
+			"timp":["12", "13", "14","15","16","17","18","19","20"]
+		},
+		{
+			"fisier":"nike2.png",
+			"descriere":"Nike",
+			"timp":["12", "13", "14","15","16","17","18","19","20"]
+		},
+		{
+			"fisier":"adidas3.png",
+			"descriere":"Adidas",
+			"timp":["21","22","23","0","1","2","3","4"]
+		},
+		{
+			"fisier":"puma3.png",
+			"descriere":"Puma",
+			"timp":["21","22","23","0","1","2","3","4"]
+		},
+		{
+			"fisier":"nike3.png",
+			"descriere":"Nike",
+			"timp":["21","22","23","0","1","2","3","4"]
+		}
+	]
+}

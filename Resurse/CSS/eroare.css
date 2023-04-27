@@ -1,0 +1,17 @@
+.error-page{
+    background-image: url("/Resurse/Imagini/teren2.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: change-background 10s linear ;
+}
+
+@keyframes change-background {
+    0% {
+      background-image: url("/Resurse/Imagini/teren.jpg");
+    }
+    100% {
+      background-image: url("/Resurse/Imagini/teren2.jpg");
+    }
+  }

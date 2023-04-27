@@ -1,0 +1,23 @@
+
+@media  ( max-width: 1023px) {
+    #Reusch {
+      column-count: 1; 
+      column-rule: none; 
+    }
+}
+
+html{
+    font-size: 12px;
+}
+
+body{
+    --spatiere-pagina:30px;
+    --padding-sectiune:5px;
+}
+
+#grid-pagina{
+    display: block;
+}
+#grid-pagina > * {
+    margin-bottom:15px;
+}

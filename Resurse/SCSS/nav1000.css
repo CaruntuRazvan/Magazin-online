@@ -1,0 +1,12 @@
+body {
+  --inaltime-meniu: 35px;
+  --latime-buton: 100px;
+}
+body #acasa-mediu {
+  display: block;
+}
+body #acasa {
+  display: none;
+}
+
+/*# sourceMappingURL=nav1000.css.map */

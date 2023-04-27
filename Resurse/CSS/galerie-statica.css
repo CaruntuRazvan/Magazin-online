@@ -1,0 +1,46 @@
+#galerie-statica{
+  padding-left:var(--padding-sectiune);
+  padding-right:var(--padding-sectiune);
+}
+
+#grid-galerie {
+ display:grid;
+ grid-template-columns: repeat(3,1fr);
+ grid-row-gap:0.5em;
+ grid-column-gap:0.5em;
+ counter-reset: nrimag 0;  /* nrimag=0 */
+}
+#grid-galerie img{
+  width: 100%;
+}
+#grid-galerie figcaption{
+  text-align:center;
+  counter-increment: nrimag 1; /* nrimag+=1 */
+}
+
+#grid-galerie figcaption::before{
+  content: counter(nrimag, upper-alpha) ")";
+}
+
+#grid-galerie img{
+  transition: 0.7s all linear;
+}
+
+#grid-galerie img:hover{
+  border-radius:10%;
+  transform: rotate(360deg) scale(1.25);/* le-am marit doar cu 25% */
+  
+}
+
+@media screen and (max-width:1023px){
+  #grid-galerie {
+      display:block;
+  }
+}
+
+@media screen and (max-width:767px){
+  #grid-galerie {
+      display:block;
+  }
+}
+

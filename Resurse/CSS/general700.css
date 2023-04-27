@@ -1,0 +1,50 @@
+
+@media (max-width: 767px) {
+    table {
+      border-spacing: 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    
+    .container-iframe {
+      width: 80vw; 
+    }  
+}
+
+@media (max-width: 767px) {
+  #Reusch {
+    column-count: 1; 
+    column-rule: none; 
+  }
+}
+
+html{
+    font-size: 12px;
+}
+
+body{
+    --spatiere-pagina:30px;
+    --padding-sectiune:5px;
+}
+
+#best {
+    overflow-x: auto; 
+  }
+  
+#tab-best {
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+  
+#tab-best  th, td {
+    padding: 8px 16px; 
+    text-align: center; 
+    border: 1px solid #ddd; 
+  }
+  
+#grid-pagina{
+    display: block;
+}
+#grid-pagina > * {
+    margin-bottom:15px;
+}

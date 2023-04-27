@@ -1,0 +1,443 @@
+html{
+    font-size: 19px;
+    scroll-behavior: smooth;
+
+}
+body{
+    --culoare-verde:#3FE57B;
+    --verde-pastel:#B2F5BF;
+    --verde-aprins:#2EF45F;
+    --verde-footer:#B7F4E6;
+    --albastru:#65cdff;
+    --albastru-inchis:#0875CA;
+    --portocaliu:#ffdf81;
+    --portocaliu-inchis:#D68910;
+    --alb:#F3F4F4;
+    --footer:#D4FEF1;
+    --culoare-fundal:#B2F5BF;
+    --culoare-fundal-inchis:#3FE57B;
+    --culoare-text:black;
+    --spatiere-pagina:30px;
+    --padding-sectiune:5px;
+}
+
+body{
+    background-color: var(--culoare-fundal);
+    color:var(--culoare-text);
+    padding-left:var(--spatiere-pagina);
+    padding-right:var(--spatiere-pagina);
+    min-width: 550px;
+   
+}
+.watermark{
+    display:none;
+}
+.page-break {
+    display: none;
+}
+h1{
+    font-size: 2rem;
+    font-family: 'Cinzel', serif;  
+}
+
+h2{
+    font-size: 1.5rem;
+    font-family: 'Cinzel', serif;
+}
+#recomandate figure figcaption h3 {
+    margin-bottom: 5px;
+  }
+  
+#recomandate figure figcaption p {
+    margin-top: 5px;
+  }
+
+.text {
+    margin-bottom: -15px;
+}
+   
+
+.tab-best{
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+
+table tr:not(thead tr):hover {
+    background-color:var(--culoare-fundal-inchis);
+    transition: background-color 0.3s ease;
+}
+  
+tr:nth-child(even) {
+    background-color:var(--portocaliu); 
+}
+  
+tr:nth-child(odd) {
+    background-color:var(--albastru); 
+}
+ 
+caption {
+    
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+    position: absolute;
+    bottom: -30px; 
+    right: 0;
+  
+}
+
+
+#grid-pagina > *{
+    border: 1px solid var(--albastru);
+    padding:var(--padding-sectiune);
+}
+
+#grid-pagina{
+    display:grid;
+    border-radius: 20px;
+    grid-template-areas: 
+         "z-prezentare z-prezentare z-prezentare z-prezentare "
+    
+                        "z-tabel z-oferte z-oferte z-anunturi"
+                        "z-recomandate z-recomandate z-recomandate z-recomandate"
+                        "z-utilizatori z-utilizatori z-intrebari z-statistici"
+                       ;
+    gap:10px 10px;
+    /*grid-row-gap
+      grid-column-gap*/
+}
+
+#welcome{
+    grid-area: z-prezentare;
+}
+
+#intrebari{
+    grid-area: z-intrebari;
+}
+#anunturi{
+    grid-area: z-anunturi;
+}
+
+#utilizatori_online{
+    grid-area: z-utilizatori;
+}
+
+#statistici{
+    grid-area: z-statistici ;
+}
+
+#oferte{
+    grid-area: z-oferte;
+}
+
+#best{
+    grid-area: z-tabel;
+}
+
+#recomandate{
+    grid-area: z-recomandate;
+}
+
+.link-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--alb);
+    border: none;
+    border-radius: 25px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .link-top:hover {
+    opacity: 1;
+  }
+  
+  .paranteze {
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .triunghi {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #555;
+    margin-top: 2px;
+    transition: margin-top 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
+  }
+  
+  .link-top:hover .triunghi {
+    margin-top: 0;
+    border-bottom-color: var(--culoare-fundal-inchis);
+  }
+ #manusi_recomandate{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+   
+ }
+
+.taburi-iframe{
+    display:flex;
+    align-items: center;
+    border: none;
+    justify-content: flex-end;
+  }
+.container-iframe iframe{
+    display: block;
+    width: 100%;
+}
+.container-iframe{
+    width: 45vw;
+}
+.tab-link{
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius:25px;
+    background-color: var(--culoare-fundal-inchis);
+    padding: 25px;
+    width:70px;
+    height:40px;
+    text-align:center;
+    text-decoration: none;
+    margin-left: 20px;
+    box-sizing: content-box;
+    border: 3px solid var(--verde-inchis);
+    color:black;
+}
+
+.tab-link:hover {
+    opacity: 0.7s;
+    transition: opacity 0.5s ease-in-out;
+    background-color: var(--alb);
+}
+
+a#link-UCL,a#ghid {
+    display: inline-block;
+    position: relative;
+  }
+a#link-UCL::before ,a#ghid::before{
+    content:"";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-image: radial-gradient(circle at center,var(--albastru) 0%,var(--albastru) 40%, transparent 80%, transparent 100%);
+    background-size: 0;
+    background-position: center;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 0.6s ease-out;
+}
+a#link-UCL:hover::before,a#ghid:hover::before {
+    width: 120%;
+    height: 120%;
+    background-size: 100%;
+    opacity: 0.4;
+}
+a#link-UCL:active,a#ghid:active {
+    outline: 2px solid var(--culoare-text);
+}
+
+a#link-editat:visited{
+    color:var(--portocaliu-inchis);
+}
+a[href^="http"]#link-editat::before{
+    content: "⮳";
+    font-size: 1.5em; /* 50% mai mare decât dimensiunea fontului linkului */
+}
+a[href^="http"]#link-editat:hover::before{
+    color:var(--albastru-inchis);
+}
+
+header{
+    box-shadow: 0 -2px 4px var(--culoare-text);
+    border-radius: 0 0 10px 10px;
+}
+footer{
+    box-shadow: 0 -2px 4px var(--culoare-text);
+    border-radius: 0 0 10px 10px;
+    background-color:var(--footer);
+} 
+#banner{
+    display: none;
+}
+/*PENTRU HR*/
+.starred-hr {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: var(--albastru-inchis);
+
+}
+.starred-hr-div {
+    height: 3px;
+    width: 90%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.starred-hr-div::before {
+    content: "*";
+    position: relative;
+    top: 0;
+    right: 10px;
+    font-size: 1.5em;
+    color: var(--albastru-inchis)
+}
+.starred-hr-div::after {
+    content: "*";
+    position: relative;
+    top: 0;
+    left: 10px;
+    font-size: 1.5em;
+    color: var(--albastru-inchis)
+}
+
+
+.text-animat {
+    font-weight: bold;
+    animation: scroll-text 5s linear infinite ;
+    overflow: hidden;
+}
+@keyframes scroll-text {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-30%);
+    }
+}
+
+#Reusch{
+    column-count: 2; /* numarul de coloane */
+    column-rule: 1px solid var(--alb); 
+}
+
+.autor::selection{
+    color:var(--alb);
+    background-color: var(--portocaliu-inchis);
+
+}
+  
+
+@media print {
+    body{
+        text-align: center;
+        margin: 0;
+    }
+    @page {
+		size: A4 portrait;
+		counter-increment: page;
+			
+	}
+    @page:left{
+        margin-left: 3cm;
+        margin-right: 1cm;
+    }
+    @page:right{
+        margin-left:1cm;
+        margin-right:3cm; ;
+    }
+    
+    .watermark
+    {
+        display: block;
+        position: fixed;
+        bottom:0;
+        color:rgba(0,0,0,0.4);
+        right:0;
+    }
+    .watermark::after{
+        content: "Caruntu Razvan";
+        width: 4cm;
+        height: 1cm;
+        opacity:0.4;
+        font-weight: bold;
+        display: block;
+        background: white;
+        border:3px solid black;
+        border-radius: 5px; 
+    }
+	
+      
+    #banner {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      width: 70vw;
+      margin: 0 auto;
+      border: 2px inset black;
+      padding: 10px;
+    }
+    #manusi-recomandate {
+        display: none ;
+      }
+    figcaption,img{
+        display: none;
+    }
+    .container-iframe{
+        display: none;
+    }
+    .link-top{
+        display: none;
+    }
+    #videoclipuri{
+        display: none;
+    }  
+    #grid-pagina{
+        display: block;
+        font-size: 30px;
+		box-sizing:border-box;
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    #h1{
+        text-align: center;
+    }
+    ul.meniu{
+        list-style-type: none;
+		margin-top: 20px;
+		padding: 0;
+    
+        
+    }
+    ul.meniu li {
+		display: block;
+	}
+	
+	ul.meniu li a {
+		display: block;
+		padding: 10px;
+		text-decoration: none;
+		color: #333;
+	}
+	
+	.page-break {
+        display: block;
+		page-break-after: always;
+	}
+}
+  
