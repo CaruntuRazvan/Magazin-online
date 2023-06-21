@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  lang="ro">   
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Lumea portarilor ofera o gama larga de manusi profesionale si accesorii destinate portarilor .">
+        <meta name="keywords" content="manusi de portar, manusi de portar profesionale, fotbal ">
+        <title>Lumea portarilor</title>
+        <%- include("../fragmente/head.ejs") %>   
+        <link href="/Resurse/CSS/manusa.css" type="text/css" rel="stylesheet" />   
+        
+    </head>
+    <body>
+    <header>
+    <%- include("../fragmente/header") %> 
+    </header>
+    <main>
+        <section>
+            <h2>Pagină produs</h2>
+                <article id="art-produs">
+                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                    <p>Promo:<span class="descriere"><%- locals.prod.descriere %> </span></p>
+                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                    <p>Marimi dispobibile: <span class="ingrediente"><%- locals.prod.marimi %> </span></p>
+                    <p>Culori: <span class="culori"><%- locals.prod.culori %> </span></p>
+                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                    <p>Cod produs: <span class="cod"><%- locals.prod.cod_produs %> </span></p>
+                    <p>Protectie degete: <span class="finger_protection"><%- locals.prod.finger_protection %> </span></p>
+                    <p>Data adăugare: <span class="data"><%- locals.prod.data_adaugare %> </span></p>
+                    <figure class="imag-produs">
+                        <img  src="/Resurse/Imagini/manusi/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                    </figure>    
+                </article>
+            
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

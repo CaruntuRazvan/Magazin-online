@@ -1,0 +1,29 @@
+#art-produs p{
+    margin:0;
+    font-weight:bold;
+    padding:0.2rem; 
+    font-size:1.1rem;
+}
+
+#art-produs p span{
+    font-weight: normal;
+}
+#art-produs p:nth-of-type(even){
+    color: var(--culoare-linii-interimitente);
+}
+
+.imag-produs{
+    text-align: center;
+}
+.imag-produs img{
+    text-align: center;
+    width:300px;
+    height:250px;
+    padding-bottom: 0.5rem;
+}
+@media screen and (max-width: 767px){
+    #art-produs{
+        margin:0 auto;
+        width:95%;
+    }
+}

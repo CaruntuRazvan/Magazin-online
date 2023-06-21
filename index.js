@@ -5,15 +5,39 @@ const { dirname } = require("path");
 const path = require("path");
 const sharp = require("sharp");
 const sass = require("sass");
+const {Client} = require ("pg");
 
+var client= new Client({database:"proiect",
+        user:"razvan",
+        password:"razvan",
+        host:"localhost",
+        port:5432});
+client.connect();
 
-obGlobal={
+client.query("select * from incercare", function(err, rez){
+    console.log("Eroare BD",err);
+ 
+    console.log("Rezultat BD",rez.rows);
+});
+
+const obGlobal={
     obErori:null,
     obImagini:null,
     folderScss:path.join(__dirname, "Resurse/SCSS"),
     folderCss:path.join(__dirname, "Resurse/CSS"),
-    folderBackup:path.join(__dirname,"backup")
+    folderBackup:path.join(__dirname,"backup"),
+    optiuniMeniu:[]
 }
+
+client.query("select * from unnest(enum_range(null::categorii_manusi))",function(err,rezCategorii){
+    if(err){
+        console.log(err);
+    }
+    else{
+        obGlobal.optiuniMeniu=rezCategorii.rows;
+    }
+});    
+
 
 app = express();
 console.log("Folder proiect",__dirname);
@@ -33,8 +57,9 @@ for (let folder of vectorFoldere){
 function compileazaScss(caleScss,caleCss){
     
     if(!caleCss){
-        let vectorCale=caleScss.split("\\");//caracter special
-        let numeFisExt=vectorCale[vectorCale.length-1];
+     ///   let vectorCale=caleScss.split("\\");//caracter special
+     ///   let numeFisExt=vectorCale[vectorCale.length-1];
+        let numeFisExt=path.basename(caleScss);
         let numeFis=numeFisExt.split(".")[0];
         caleCss=numeFis+".css";
     }
@@ -45,10 +70,14 @@ function compileazaScss(caleScss,caleCss){
         caleCss=path.join(obGlobal.folderCss,caleCss);
     //avem cai absolute in caleScss si caleCss
 
-    let vectorCale=caleCss.split("\\");
-    let numeFisCss=vectorCale[vectorCale.length-1];
+   /// let vectorCale=caleCss.split("\\");
+   /// let numeFisCss=vectorCale[vectorCale.length-1];
+    let caleResBackup=path.join(obGlobal.folderBackup,"Resurse/CSS");
+    if(!fs.existsSync(caleResBackup))
+        fs.mkdirSync(caleResBackup, {recursive:true});
+    let numeFisCss=path.basename(caleCss);
     if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numeFisCss));    
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"Resurse/CSS",numeFisCss));    
     }
     rez=sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss,rez.css)
@@ -64,7 +93,7 @@ for ( let numeFis of vFisiere){
 }
 
 fs.watch(obGlobal.folderScss,function(eveniment,numeFis){
-    console.log(eveniment,numeFis);
+    //console.log(eveniment,numeFis);
     if (eveniment=="change" || eveniment=="rename"){
         let caleCompleta=path.join(obGlobal.folderScss, numeFis);
         if (fs.existsSync(caleCompleta)){
@@ -77,6 +106,12 @@ app.set("view engine","ejs");
 
 app.use("/Resurse", express.static(path.join(__dirname, "Resurse")));
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+
+app.use("/*",function(req,res,next){
+    res.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+    next();
+})
+
 
 app.use(/^\/Resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
     afisareEroare(res,403);
@@ -93,6 +128,59 @@ app.get("/ceva",function(req,res){
 app.get(["/index","/","/home"],function(req,res){  
     res.render("pagini/index", {ip: req.ip, a:10,imagini:obGlobal.obImagini.imagini});
 })
+//-------------------------------PRODUSE---------------------------------
+app.get("/manusi", function(req, res) {
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    client.query("select * from unnest(enum_range(null::branduri_manusi))", function(err, rezBrand) {
+      let conditieWhere = "";
+      if (req.query.categorie)
+        conditieWhere = ` where categorie='${req.query.categorie}'`
+  /////bonus(0.1p)
+      client.query(`SELECT MIN(pret) AS minPret, MAX(pret) AS maxPret FROM manusi${conditieWhere}`, function(err, rezPret) {
+        if (err) {
+          console.log(err);
+          afisareEroare(res, 2);
+        } else {
+          client.query("select * from manusi" + conditieWhere, function(err, rez) {
+            console.log(300);
+            if (err) {
+              console.log(err);
+              afisareEroare(res, 2);
+            } else {
+              console.log(rez);
+              res.render("pagini/manusi", {
+                manusi: rez.rows,
+                optiuni: rezBrand.rows,
+                minPret: rezPret.rows[0].minpret,
+                maxPret: rezPret.rows[0].maxpret
+              });
+            }
+          });
+        }
+      });
+    });
+  });
+  
+  
+
+
+app.get("/manusa/:id",function(req, res){
+    console.log(req.params);
+   
+    client.query( `select * from manusi where id=${req.params.id}`, function( err, rezultat){
+        if(err){
+            console.log(err);
+            afisareEroare(res, 2);
+        }
+        else
+            res.render("pagini/manusa", {prod:rezultat.rows[0]});
+    });
+});
+
+
+
+//-------------------------------------------------------------------------
 
 app.get("/*.ejs",function(req, res){
     afisareEroare(res,400);
@@ -102,7 +190,7 @@ app.get("/*",function(req, res){
     try{
         res.render("pagini"+req.url, function(err, rezRandare){
             if(err){
-                console.log(err);
+               // console.log(err);
                 if(err.message.startsWith("Failed to lookup view"))
                 //afisareEroare(res,{_identificator:404, _titlu:"ceva"});
                     afisareEroare(res,404, "Eroare 404!");
@@ -193,6 +281,7 @@ function afisareEroare(res, _identificator, _titlu="EROARE", _text, _imagine ){
     
 
 }
+
 
 app.listen(8080);
 console.log("Serverul a pornit");

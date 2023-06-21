@@ -3,6 +3,7 @@
 }
 #acasa-mediu{
     display:none;
+
 }
 body{
     --inaltime-meniu:45px;
@@ -22,12 +23,14 @@ nav{
     position:sticky;
     top:0;
     margin-left:calc(-1 * var(--spatiere-pagina));
+    z-index: 1;
 }
 
 ul.meniu, ul.meniu ul{
     padding: 0;
     margin:0;
     list-style-type: none;
+
 }
 ul.meniu{
     display:flex;
@@ -48,9 +51,8 @@ ul.meniu li{
     margin:0;
     box-sizing: border-box; 
     list-style-type:none;
-    transition: all 0.5s linear;
+    transition: all 0.5s linear ;
     box-sizing: border-box;
-  
     
 }
 
@@ -59,7 +61,7 @@ ul.meniu ul{
     margin: 0;
     text-decoration: none;
     box-sizing: border-box;
-    opacity:0;
+    opacity:1;
     transform:scale(1,0);
     transform-origin: center top;
     transition: all 0.6s linear;
@@ -69,8 +71,7 @@ ul.meniu ul{
 
 ul.meniu li ul :hover {
     text-decoration: underline;
-    
-    
+       
 }
 
 ul.meniu li:hover ul{
@@ -94,11 +95,15 @@ ul.meniu li div, ul.meniu li a{
     box-sizing: border-box; 
     color:var(--culoare-text);
 }
+@media (min-width: 767px) {
+    
+    ul.meniu li:nth-child(3) div {
+        overflow: hidden;
+        position: relative;
+        
+    }
+  }
 
-ul.meniu li:nth-child(3) div {
-    overflow: hidden;
-    position: relative;
-}
   
 ul.meniu li:nth-child(3) div::before {
     content: "Accesorii";
@@ -113,6 +118,7 @@ ul.meniu li:nth-child(3) div::before {
 
 ul.meniu li:nth-child(3) div:hover::before {
     top: 0;
+    
 }
 
 

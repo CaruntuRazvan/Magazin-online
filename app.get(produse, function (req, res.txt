@@ -1,0 +1,113 @@
+app.get("/produse", function (req, res) {
+  client.query(
+    "SELECT * FROM unnest(enum_range(null::branduri_manusi))",
+    function (err, rezBrand) {
+      if (err) {
+        console.log(err);
+        afisareEroare(res, 2);
+      } else {
+        let conditieWhere = "";
+        if (req.query.categorie) {
+          conditieWhere = ` WHERE tip_produs='${req.query.categorie}'`;
+        }
+        client.query(
+          "SELECT * FROM manusi" + conditieWhere,
+          function (err, rez) {
+            if (err) {
+              console.log(err);
+              afiseazaEroare(res, 2);
+            } else {
+              client.query(
+                "SELECT MIN(pret) AS min, MAX(pret) AS max FROM manusi_",
+                function (err, rezPret) {
+                  if (err) {
+                    console.log(err);
+                    afiseazaEroare(res, 2);
+                  } else {
+                    // Afiseaza doar primele 3 select-uri
+                    res.render("pagini/manusi", {
+                      manusi: rez.rows,
+                      minPret: rezPret.rows[0].min,
+                      maxPret: rezPret.rows[0].max,
+                      optiuni: rezBrand.rows
+                    });
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
+    }
+  );
+});
+
+
+
+
+
+app.get("/manusi",function(req, res){
+
+
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::branduri_manusi))",function(err,rezBrand){
+        let conditieWhere="";
+        if(req.query.categorie)
+            conditieWhere=` where categorie='${req.query.categorie}'`
+
+
+        client.query("select * from manusi"+conditieWhere , function( err, rez){
+            console.log(300);
+            if(err){
+                console.log(err);
+                afisareEroare(res, 2);
+            }
+            else{
+                console.log(rez);
+                res.render("pagini/manusi", {manusi:rez.rows, optiuni:rezBrand.rows});
+            }
+        });
+        
+        
+    })
+
+
+    
+
+
+});
+
+ <label> Pret minim: <input type="range" id="inp-pret" value="0" min="80"  max="900"> <span id="infoRange">(0)</span></label>
+
+
+
+
+app.get("/manusi",function(req, res){
+
+
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::branduri_manusi))",function(err,rezBrand){
+        let conditieWhere="";
+        if(req.query.categorie)
+            conditieWhere=` where categorie='${req.query.categorie}'`
+
+
+        client.query("select * from manusi"+conditieWhere , function( err, rez){
+            console.log(300);
+            if(err){
+                console.log(err);
+                afisareEroare(res, 2);
+            }
+            else{
+                console.log(rez);
+                res.render("pagini/manusi", {manusi:rez.rows, optiuni:rezBrand.rows});
+            }
+        });
+        
+        
+    })
+});

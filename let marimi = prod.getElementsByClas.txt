@@ -1,0 +1,17 @@
+  let marimi = prod.getElementsByClassName("val-marimi")[0].innerHTML.toLowerCase();
+
+            let marimi_vector = marimi.split(",");
+           
+  let cond5 = (marimi_vector.includes(val_marimi_selectate[0].toLowerCase()));
+
+
+
+      
+       
+  let val_marimi = document.getElementById("inp-marimi"); 
+        let val_marimi_selectate = [];
+                for (let option of val_marimi.selectedOptions) {
+                    val_marimi_selectate.push(option.value);
+                    console.log(option.value);
+                }
+        

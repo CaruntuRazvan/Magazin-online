@@ -4,6 +4,10 @@
       column-count: 1; 
       column-rule: none; 
     }
+    #banner{
+        position:fixed;
+        animation: none;
+    }
 }
 
 html{
